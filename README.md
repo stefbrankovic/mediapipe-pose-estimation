@@ -9,8 +9,8 @@ Built as hands-on exploration for my thesis on Graph Convolutional Networks for 
 
 ### 1. Real-time webcam demo
 Live pose tracking with two features:
-- **Bicep curl rep counter** — tracks elbow angle (shoulder → elbow → wrist) and counts full reps
-- **Clap detector** — triggers when wrist distance drops below a threshold
+- **Bicep curl rep counter** - tracks elbow angle (shoulder - elbow - wrist) and counts full reps
+- **Clap detector** - triggers when wrist distance drops below a threshold
 
 ### 2. Yoga pose classifier (3 classes: Tree, Warrior, T-Pose)
 
@@ -18,7 +18,7 @@ A three-step pipeline:
 
 | Step | Script | What it does |
 |------|--------|--------------|
-| 1 | `src/preprocess.py` | Runs MediaPipe on each image, extracts 132 landmark features (x, y, z, visibility × 33 joints) → CSV |
+| 1 | `src/preprocess.py` | Runs MediaPipe on each image, extracts 132 landmark features (x, y, z, visibility × 33 joints) - CSV |
 | 2 | `src/train.py` | Trains a PyTorch MLP on the landmark coordinates |
 | 3 | `src/realtime_classify.py` | Real-time classification from webcam using the trained model |
 
@@ -29,17 +29,17 @@ A three-step pipeline:
 Using skeleton coordinates rather than pixels:
 - Reduces input from ~300k pixel values to **132 floats**
 - Makes the classifier viewpoint- and scale-invariant (to a degree)
-- Directly mirrors the input format of graph-based models (ST-GCN, AGCN) which treat landmarks as graph nodes — this was the key motivation
+- Directly mirrors the input format of graph-based models (ST-GCN, AGCN) which treat landmarks as graph nodes - this was the key motivation
 
 ---
 
 ## Model
 
 ```
-Input (132) → Linear(256) → BN → ReLU → Dropout(0.3)
-            → Linear(128) → BN → ReLU → Dropout(0.3)
-            → Linear(64)  → ReLU
-            → Linear(3)   → CrossEntropyLoss
+Input (132) → Linear(256) - BN - ReLU - Dropout(0.3)
+            → Linear(128) - BN → ReLU - Dropout(0.3)
+            → Linear(64)  - ReLU
+            → Linear(3)   - CrossEntropyLoss
 ```
 
 Trained with Adam + StepLR scheduler, 80/20 stratified split.
