@@ -12,6 +12,8 @@ Live pose tracking with two features:
 - **Bicep curl rep counter** - tracks elbow angle (shoulder - elbow - wrist) and counts full reps
 - **Clap detector** - triggers when wrist distance drops below a threshold
 
+![Bicep curl counter demo](assets/biceps_curl_counter.png)
+
 ### 2. Yoga pose classifier (3 classes: Tree, Warrior, T-Pose)
 
 A three-step pipeline:
